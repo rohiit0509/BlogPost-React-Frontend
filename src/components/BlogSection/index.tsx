@@ -28,7 +28,7 @@ const BlogSection = () => {
   }
 
   const handleLikeBtn = async (data: any) => {
-    const res = await axios.patch(`${url}/likeonpost`, data, {
+    const res = await axios.patch(`${url}/likeonpost/`, data, {
       withCredentials: true,
     })
     setLike(res.data.likesCount)
