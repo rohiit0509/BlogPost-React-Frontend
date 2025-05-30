@@ -14,7 +14,7 @@ const BlogSection = () => {
   const [openComment, setOpenComment] = useState(false)
   const user = JSON.parse(localStorage.getItem("user") || "null")
   const userToken = localStorage.getItem("authToken")
-
+  const url = process.env.REACT_APP_API_URL
   const topics = ["Programming", "Data Science", "Technology", "Self Improvement", "Writing", "Machine Learning", "Relationships", "Productivity", "Politics"]
 
   const { data, refetch } = useGet("fetchData", "/getData")
@@ -28,7 +28,7 @@ const BlogSection = () => {
   }
 
   const handleLikeBtn = async (data: any) => {
-    const res = await axios.patch("http://localhost:9000/likeonpost/", data, {
+    const res = await axios.patch(`${url}/likeonpost`, data, {
       withCredentials: true,
     })
     setLike(res.data.likesCount)

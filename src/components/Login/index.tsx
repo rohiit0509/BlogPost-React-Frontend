@@ -8,6 +8,7 @@ import axios from "axios"
 import { useState } from "react"
 import Loader from "../Loader"
 import { IoArrowBackCircle } from "react-icons/io5";
+const url = process.env.REACT_APP_API_URL
 
 const Login = () => {
   const [loader, setLoader] = useState(false)
@@ -23,7 +24,7 @@ const Login = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:9000/login", data, config)
+      const res = await axios.post(`${url}/login`, data, config)
 
       if (res.status === 200) {
         const { token, user } = res.data

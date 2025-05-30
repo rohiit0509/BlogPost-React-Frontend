@@ -8,6 +8,7 @@ import axios from "axios"
 import Loader from "../Loader"
 import { useState } from "react"
 import { IoArrowBackCircle } from "react-icons/io5"
+const url = process.env.REACT_APP_API_URL
 
 const Signup = () => {
   const navigate = useNavigate()
@@ -16,7 +17,7 @@ const Signup = () => {
   const onSubmit = async (data: any) => {
     setBtnLoading(true)
     try {
-      const res = await axios.post("http://localhost:9000/signup", data)
+      const res = await axios.post(`${url}/signup`, data)
       const toastConfig = {
         position: "top-right" as const,
         autoClose: 3000,

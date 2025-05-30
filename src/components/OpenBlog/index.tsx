@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom"
 import { useGet } from "../../hooks/fetchData"
 import { useEffect } from "react"
+const url = process.env.REACT_APP_API_URL
 
 const OpenBlog = () => {
   const { id } = useParams()
-  const { data, refetch } = useGet("fetchblog", `http://localhost:9000/fetchBlog/${id}`)
+  const { data, refetch } = useGet("fetchblog", `${url}/fetchBlog/${id}`)
 
   useEffect(() => {
     refetch()

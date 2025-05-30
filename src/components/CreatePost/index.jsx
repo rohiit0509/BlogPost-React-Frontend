@@ -8,7 +8,7 @@ import axios from "axios"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import Loader from "../Loader"
-
+const url = process.env.REACT_APP_API_URL
 const CreatePost = () => {
   const [thumbnail, setThumbnail] = useState("")
   const [btnLoading, setBtnLoading] = useState(false)
@@ -29,7 +29,7 @@ const CreatePost = () => {
   const uploadImage = async (file) => {
     const formData = new FormData()
     formData.append("image", file)
-    let sendImage = await axios.post("http://localhost:9000/imageURl", formData, {
+    let sendImage = await axios.post(`${url}/imageURl`, formData, {
       headers: {
         "Content-Type": "multipart/form-data; boundary=<calculated when request is sent>",
       },
@@ -47,7 +47,7 @@ const CreatePost = () => {
       formData.append("body", body)
       formData.append("thumbnail", thumbnail)
 
-      const sendData = await axios.post("http://localhost:9000/sendData", formData, {
+      const sendData = await axios.post(`${url}/sendData`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

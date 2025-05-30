@@ -5,8 +5,8 @@ import { ChatWrapper, ImageContainer, SearchBar } from "../../styles/components/
 import { IconContainer, IconDiv, Profile, ProfileContainer, Name, SendMessageDiv, ViewContainer, LeftMsg, RightMsg } from "../../styles/components/ChattingBox";
 import { FcCallback, FcVideoCall, FcLeft, FcAbout } from "react-icons/fc";
 import { TbSend } from "react-icons/tb";
-
-const ChattingBox = ({ openChat, user, conversation }: any) => {
+  const url = process.env.REACT_APP_API_URL
+const ChattingBox = ({ openChat, user }: any) => {
   const { userName, userId, userProfile, loggedInUser } = user;
   const socket = useRef<Socket | null>(null);
   const { register, handleSubmit, reset } = useForm();
@@ -25,7 +25,7 @@ const ChattingBox = ({ openChat, user, conversation }: any) => {
   };
 
   useEffect(() => {
-    socket.current = io("http://localhost:9000");
+    socket.current = io(`${url}`);
 
     socket.current.emit("addUser", loggedInUser);
 
