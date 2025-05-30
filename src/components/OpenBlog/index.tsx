@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useGet } from "../../hooks/fetchData"
 import { useEffect } from "react"
-const url = process.env.REACT_APP_API_URL
+const url = process.env.REACT_APP_API_BASE_URL
 
 const OpenBlog = () => {
   const { id } = useParams()

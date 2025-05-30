@@ -8,7 +8,7 @@ import axios from "axios"
 import Loader from "../Loader"
 import { useState } from "react"
 import { IoArrowBackCircle } from "react-icons/io5"
-const url = process.env.REACT_APP_API_URL
+const url = process.env.REACT_APP_API_BASE_URL
 
 const Signup = () => {
   const navigate = useNavigate()

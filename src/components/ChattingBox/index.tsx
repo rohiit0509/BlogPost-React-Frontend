@@ -5,7 +5,7 @@ import { ChatWrapper, ImageContainer, SearchBar } from "../../styles/components/
 import { IconContainer, IconDiv, Profile, ProfileContainer, Name, SendMessageDiv, ViewContainer, LeftMsg, RightMsg } from "../../styles/components/ChattingBox";
 import { FcCallback, FcVideoCall, FcLeft, FcAbout } from "react-icons/fc";
 import { TbSend } from "react-icons/tb";
-  const url = process.env.REACT_APP_API_URL
+  const url = process.env.REACT_APP_API_BASE_URL
 const ChattingBox = ({ openChat, user }: any) => {
   const { userName, userId, userProfile, loggedInUser } = user;
   const socket = useRef<Socket | null>(null);

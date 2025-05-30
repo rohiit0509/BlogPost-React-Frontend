@@ -14,7 +14,7 @@ const BlogSection = () => {
   const [openComment, setOpenComment] = useState(false)
   const user = JSON.parse(localStorage.getItem("user") || "null")
   const userToken = localStorage.getItem("authToken")
-  const url = process.env.REACT_APP_API_URL
+  const url = process.env.REACT_APP_API_BASE_URL
   const topics = ["Programming", "Data Science", "Technology", "Self Improvement", "Writing", "Machine Learning", "Relationships", "Productivity", "Politics"]
 
   const { data, refetch } = useGet("fetchData", "/getData")

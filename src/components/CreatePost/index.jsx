@@ -8,7 +8,7 @@ import axios from "axios"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import Loader from "../Loader"
-const url = process.env.REACT_APP_API_URL
+const url = process.env.REACT_APP_API_BASE_URL
 const CreatePost = () => {
   const [thumbnail, setThumbnail] = useState("")
   const [btnLoading, setBtnLoading] = useState(false)
