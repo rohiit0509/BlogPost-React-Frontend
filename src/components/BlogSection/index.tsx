@@ -17,7 +17,7 @@ const BlogSection = () => {
   const url = process.env.REACT_APP_API_BASE_URL
   const topics = ["Programming", "Data Science", "Technology", "Self Improvement", "Writing", "Machine Learning", "Relationships", "Productivity", "Politics"]
 
-  const { data, refetch } = useGet("fetchData", "/getData")
+  const { data = [], refetch } = useGet("fetchData", "/getData")
   const [postData, setPostData] = useState({})
 
   const handleCommentBtn = (postId: string) => {
@@ -51,72 +51,74 @@ const BlogSection = () => {
       {openComment && <Comment refetch={refetch} postData={postData} openComment={setOpenComment} />}
       <BlogContainer>
         <BlogContainerLeft>
-          {data?.map((item: any, index: number) => {
-            return (
-              <Wrapper key={index}>
-                <Details>
-                  <UserContainer>
-                    <UserChatProfile src={item?.userId?.userProfile} />
-                    <UserName>{item?.userId?.userName}</UserName>
-                  </UserContainer>
-                  <BlogTitle fontSize="22px">{item.title}</BlogTitle>
-                  <BlogDescription>{item.description}</BlogDescription>
-                  <Wrapper justifyContent="space-between">
-                    <BlogReadBtn onClick={() => navigate(`/openblog/${item.title}`)}>Read more</BlogReadBtn>
-                    <LikeWrapper>
-                      <Container>
-                        {item?.likes?.includes(user?.id) ? (
-                          <AiFillLike
-                            size={19}
-                            onClick={() => {
-                              if (userToken) {
-                                handleLikeBtn({
-                                  postId: item._id,
-                                  userId: item.userId?._id,
-                                  like: false,
-                                })
-                              } else {
-                                triggerError()
-                              }
-                            }}
-                          />
-                        ) : (
-                          <AiOutlineLike
-                            size={19}
-                            onClick={() => {
-                              if (userToken) {
-                                handleLikeBtn({
-                                  postId: item._id,
-                                  userId: item.userId?._id,
-                                  like: true,
-                                })
-                              } else {
-                                triggerError()
-                              }
-                            }}
-                          />
-                        )}
-                        <Count>{item.likes.length}</Count>
-                      </Container>
-                      <Container
-                        onClick={() => {
-                          if (userToken) {
-                            handleCommentBtn(item._id)
-                          } else {
-                            triggerError()
-                          }
-                        }}
-                      >
-                        <FaRegComment size={19} />
-                        <Count>{item.comments.length}</Count>
-                      </Container>
-                    </LikeWrapper>
-                  </Wrapper>
-                </Details>
-                <BlogImg src={item.thumbnail} />
-              </Wrapper>
-            )
-          })}
+          {data &&
+            data?.length > 0 &&
+            data?.map((item: any, index: number) => {
+              return (
+                <Wrapper key={index}>
+                  <Details>
+                    <UserContainer>
+                      <UserChatProfile src={item?.userId?.userProfile} />
+                      <UserName>{item?.userId?.userName}</UserName>
+                    </UserContainer>
+                    <BlogTitle fontSize="22px">{item.title}</BlogTitle>
+                    <BlogDescription>{item.description}</BlogDescription>
+                    <Wrapper justifyContent="space-between">
+                      <BlogReadBtn onClick={() => navigate(`/openblog/${item.title}`)}>Read more</BlogReadBtn>
+                      <LikeWrapper>
+                        <Container>
+                          {item?.likes?.includes(user?.id) ? (
+                            <AiFillLike
+                              size={19}
+                              onClick={() => {
+                                if (userToken) {
+                                  handleLikeBtn({
+                                    postId: item._id,
+                                    userId: item.userId?._id,
+                                    like: false,
+                                  })
+                                } else {
+                                  triggerError()
+                                }
+                              }}
+                            />
+                          ) : (
+                            <AiOutlineLike
+                              size={19}
+                              onClick={() => {
+                                if (userToken) {
+                                  handleLikeBtn({
+                                    postId: item._id,
+                                    userId: item.userId?._id,
+                                    like: true,
+                                  })
+                                } else {
+                                  triggerError()
+                                }
+                              }}
+                            />
+                          )}
+                          <Count>{item.likes.length}</Count>
+                        </Container>
+                        <Container
+                          onClick={() => {
+                            if (userToken) {
+                              handleCommentBtn(item._id)
+                            } else {
+                              triggerError()
+                            }
+                          }}
+                        >
+                          <FaRegComment size={19} />
+                          <Count>{item.comments.length}</Count>
+                        </Container>
+                      </LikeWrapper>
+                    </Wrapper>
+                  </Details>
+                  <BlogImg src={item.thumbnail} />
+                </Wrapper>
+              )
+            })}
         </BlogContainerLeft>
         <BlogContainerRight>
           <RightWrapper>
